@@ -1,19 +1,15 @@
 module type SET = sig
-  type elem
+  type 'a t
 
-  type t
+  val empty : 'a t
 
-  val empty : t
+  val insert : 'a -> 'a t -> 'a t
 
-  val insert : elem -> t -> t
-
-  val member : elem -> t -> bool
+  val member : 'a -> 'a t -> bool
 end
 
 module NaiveBst : SET = struct
-  type elem
-
-  type t = Nil | Tree of t * elem * t
+  type 'a t = Nil | Tree of 'a t * 'a * 'a t
 
   let empty = Nil
 
