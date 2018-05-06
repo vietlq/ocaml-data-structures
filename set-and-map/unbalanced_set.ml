@@ -18,7 +18,9 @@ module type SET = sig
   val member : elem -> t -> bool
 end
 
+(* Both declarations are valid, however with type is more explicit *)
 module Make(Elem : ORDERED) : SET with type elem = Elem.t = struct
+(* module Make(Elem : ORDERED) = struct *)
   type elem = Elem.t
 
   type t = Nil | Tree of t * elem * t

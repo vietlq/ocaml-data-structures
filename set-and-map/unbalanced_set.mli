@@ -7,12 +7,4 @@ module type SET =
     val insert : elem -> t -> t
     val member : elem -> t -> bool
   end
-module Make :
-  functor (Elem : ORDERED) ->
-    sig
-      type elem = Elem.t
-      type t
-      val empty : t
-      val insert : elem -> t -> t
-      val member : elem -> t -> bool
-    end
+module Make(Elem : ORDERED) : SET with type elem = Elem.t
