@@ -1,5 +1,6 @@
 *.cmi
 *.cmo
 *.cma
+*.exe
 a.out
 _build/*
