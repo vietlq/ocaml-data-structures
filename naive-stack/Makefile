@@ -6,7 +6,7 @@ help:
 
 clean:
 	rm -f *.cmo *.cmi *.cma *.cmx *.cmxa
-	rm -f *.o a.out a.exe *.a *.so *.dll *.dylib
+	rm -f *.o a.out a.exe *.a *.so *.dll *.dylib *.exe
 	rm -rf _build/
 
 build:
