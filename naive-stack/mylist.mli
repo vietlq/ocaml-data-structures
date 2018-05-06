@@ -12,6 +12,8 @@ module type Stack = sig
   val cons : 'a -> 'a t -> 'a t
 
   val join : 'a t -> 'a t -> 'a t
+
+  val suffixes : 'a t -> 'a t t
 end
 
 module Mylist : Stack

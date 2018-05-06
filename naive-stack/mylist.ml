@@ -12,6 +12,8 @@ module type Stack = sig
   val cons : 'a -> 'a t -> 'a t
 
   val join : 'a t -> 'a t -> 'a t
+
+  val suffixes : 'a t -> 'a t t
 end
 
 module Mylist : Stack = struct
@@ -30,4 +32,8 @@ module Mylist : Stack = struct
   let rec join xs ys = match xs with
     | [] -> ys
     | x :: xs1 -> x :: (join xs1 ys)
+
+  let rec suffixes xs = match xs with
+    | [] -> [[]]
+    | _ :: xs1 as xs -> xs :: (suffixes xs1)
 end

@@ -7,6 +7,7 @@ module type Stack =
     val tail : 'a t -> 'a t
     val cons : 'a -> 'a t -> 'a t
     val join : 'a t -> 'a t -> 'a t
+    val suffixes : 'a t -> 'a t t
 end
 
 module CustomStack : Stack

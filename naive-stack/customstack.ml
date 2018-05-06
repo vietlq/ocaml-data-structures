@@ -12,6 +12,8 @@ module type Stack = sig
   val cons : 'a -> 'a t -> 'a t
 
   val join : 'a t -> 'a t -> 'a t
+
+  val suffixes : 'a t -> 'a t t
 end
 
 module CustomStack : Stack = struct
@@ -34,4 +36,8 @@ module CustomStack : Stack = struct
   let rec join xs ys = match xs with
     | Nil -> ys
     | Cons (x, xs1) -> Cons (x, join xs1 ys)
+
+  let rec suffixes xs = match xs with
+    | Nil -> Nil
+    | Cons (_, xs1) as xs -> Cons (xs, suffixes xs1)
 end
