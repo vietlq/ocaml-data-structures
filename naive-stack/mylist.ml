@@ -27,4 +27,13 @@ module Mylist : Stack.Stack = struct
     in
     if idx < 0 then failwith "Invalid index"
     else aux idx v xs
+
+  let get idx xs =
+    let rec aux idx xs = match idx, xs with
+      | _, [] -> failwith "Empty"
+      | 0, x :: _ -> x
+      | idx, _ :: xs1 -> aux (idx - 1) xs1
+    in
+    if idx < 0 then failwith "Invalid index"
+    else aux idx xs
 end

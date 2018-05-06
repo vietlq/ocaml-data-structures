@@ -31,4 +31,13 @@ module CustomStack : Stack.Stack = struct
     in
     if idx < 0 then failwith "Invalid index"
     else aux idx v xs
+
+  let get idx xs =
+    let rec aux idx xs = match idx, xs with
+      | _, Nil -> failwith "Empty"
+      | 0, Cons (x, _) -> x
+      | idx, Cons (_, xs1) -> aux (idx - 1) xs1
+    in
+    if idx < 0 then failwith "Invalid index"
+    else aux idx xs
 end

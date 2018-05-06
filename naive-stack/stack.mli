@@ -16,4 +16,6 @@ module type Stack = sig
   val suffixes : 'a t -> 'a t t
 
   val update : int -> 'a -> 'a t -> 'a t
+
+  val get : int -> 'a t -> 'a
 end
