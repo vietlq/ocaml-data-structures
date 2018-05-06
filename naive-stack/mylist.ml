@@ -1,22 +1,4 @@
-module type Stack = sig
-  type 'a t
-
-  val empty : 'a t
-
-  val isEmpty : 'a t -> bool
-
-  val head : 'a t -> 'a
-
-  val tail : 'a t -> 'a t
-
-  val cons : 'a -> 'a t -> 'a t
-
-  val join : 'a t -> 'a t -> 'a t
-
-  val suffixes : 'a t -> 'a t t
-end
-
-module Mylist : Stack = struct
+module Mylist : Stack.Stack = struct
   type 'a t = 'a list
 
   let empty = []
@@ -36,4 +18,13 @@ module Mylist : Stack = struct
   let rec suffixes xs = match xs with
     | [] -> [[]]
     | _ :: xs1 as xs -> xs :: (suffixes xs1)
+
+  let update idx v xs =
+    let rec aux idx v xs = match idx, xs with
+      | _, [] -> failwith "Empty"
+      | 0, _ :: xs1 -> v :: xs1
+      | idx, x :: xs1 -> x :: (aux (idx - 1) v xs1)
+    in
+    if idx < 0 then failwith "Invalid index"
+    else aux idx v xs
 end

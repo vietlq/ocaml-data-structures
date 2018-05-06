@@ -14,4 +14,6 @@ module type Stack = sig
   val join : 'a t -> 'a t -> 'a t
 
   val suffixes : 'a t -> 'a t t
+
+  val update : int -> 'a -> 'a t -> 'a t
 end

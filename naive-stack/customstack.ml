@@ -1,22 +1,4 @@
-module type Stack = sig
-  type 'a t
-
-  val empty : 'a t
-
-  val isEmpty : 'a t -> bool
-
-  val head : 'a t -> 'a
-
-  val tail : 'a t -> 'a t
-
-  val cons : 'a -> 'a t -> 'a t
-
-  val join : 'a t -> 'a t -> 'a t
-
-  val suffixes : 'a t -> 'a t t
-end
-
-module CustomStack : Stack = struct
+module CustomStack : Stack.Stack = struct
   type 'a t = Nil | Cons of 'a * 'a t
 
   let empty = Nil
@@ -40,4 +22,13 @@ module CustomStack : Stack = struct
   let rec suffixes xs = match xs with
     | Nil -> Nil
     | Cons (_, xs1) as xs -> Cons (xs, suffixes xs1)
+
+  let update idx v xs =
+    let rec aux idx v xs = match idx, xs with
+      | _, Nil -> failwith "Empty"
+      | 0, Cons (_, xs1) -> Cons (v, xs1)
+      | idx, Cons (x, xs1) -> Cons (x, aux (idx - 1) v xs1)
+    in
+    if idx < 0 then failwith "Invalid index"
+    else aux idx v xs
 end
