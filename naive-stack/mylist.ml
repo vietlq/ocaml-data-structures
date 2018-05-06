@@ -10,6 +10,8 @@ module type Stack = sig
   val tail : 'a t -> 'a t
 
   val cons : 'a -> 'a t -> 'a t
+
+  val join : 'a t -> 'a t -> 'a t
 end
 
 module Mylist : Stack = struct
@@ -24,4 +26,8 @@ module Mylist : Stack = struct
   let tail xs = List.tl xs
 
   let cons x xs = x :: xs
+
+  let rec join xs ys = match xs with
+    | [] -> ys
+    | x :: xs1 -> x :: (join xs1 ys)
 end

@@ -10,4 +10,6 @@ module type Stack = sig
   val tail : 'a t -> 'a t
 
   val cons : 'a -> 'a t -> 'a t
+
+  val join : 'a t -> 'a t -> 'a t
 end

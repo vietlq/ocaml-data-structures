@@ -6,6 +6,7 @@ module type Stack =
     val head : 'a t -> 'a
     val tail : 'a t -> 'a t
     val cons : 'a -> 'a t -> 'a t
+    val join : 'a t -> 'a t -> 'a t
 end
 
 module CustomStack : Stack

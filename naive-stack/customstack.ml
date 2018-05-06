@@ -10,6 +10,8 @@ module type Stack = sig
   val tail : 'a t -> 'a t
 
   val cons : 'a -> 'a t -> 'a t
+
+  val join : 'a t -> 'a t -> 'a t
 end
 
 module CustomStack : Stack = struct
@@ -28,4 +30,8 @@ module CustomStack : Stack = struct
     | Cons (x, xs) -> xs
 
   let cons x xs = Cons (x, xs)
+
+  let rec join xs ys = match xs with
+    | Nil -> ys
+    | Cons (x, xs1) -> Cons (x, join xs1 ys)
 end
