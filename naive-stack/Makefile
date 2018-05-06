@@ -1,15 +1,22 @@
-.PHONY: help clean build
+.PHONY: help clean build build-opt
 
 help:
 	@echo "help        Show this message"
 	@echo "clean       Remove all artifacts"
 
 clean:
-	rm -f *.o *.cmo *.cmi *.cma a.out a.exe
+	rm -f *.cmo *.cmi *.cma *.cmx *.cmxa
+	rm -f *.o a.out a.exe *.a *.so *.dll *.dylib
 	rm -rf _build/
 
 build:
-	ocamlc stack.mli
-	ocamlc mylist.mli
-	ocamlc mylist.ml
+	ocamlc -c stack.mli
+	ocamlc -c mylist.mli
+	ocamlc -c mylist.ml
 	ocamlc -a -o mylist.cma mylist.cmo
+
+build-opt:
+	ocamlopt -c stack.mli
+	ocamlopt -c mylist.mli
+	ocamlopt -c mylist.ml
+	ocamlopt -a -o mylist.cmxa mylist.cmx

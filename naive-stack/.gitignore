@@ -1,6 +1,14 @@
 *.cmi
 *.cmo
 *.cma
+*.cmx
+*.cmxa
+*.cmxs
+*.dll
 *.exe
+*.o
+*.so
+*.dylib
+*.a
 a.out
 _build/*
