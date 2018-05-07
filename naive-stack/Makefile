@@ -16,6 +16,7 @@ build:
 	ocamlc -c customstack.mli
 	ocamlc -c customstack.ml
 	ocamlc -a -o mylist.cma mylist.cmo
+	ocamlc -o example.exe customstack.cmo mylist.cmo example.ml
 
 build-opt:
 	ocamlopt -c stack.mli
@@ -24,3 +25,4 @@ build-opt:
 	ocamlopt -c customstack.mli
 	ocamlopt -c customstack.ml
 	ocamlopt -a -o mylist.cmxa mylist.cmx
+	ocamlopt -o example.exe customstack.cmo mylist.cmo example.ml
